@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      SECRET_KEY: your_secret_key
+      DATABASE_URL: postgresql://user:password@db/db_name
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: db_name
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
