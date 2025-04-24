@@ -1,0 +1,37 @@
+project/
+├── frontend/                          # Frontend-код и шаблоны
+│   ├── static/                         # Статические ресурсы (CSS, JS, изображения)
+│   │   ├── css/
+│   │   │   └── styles.css              # Таблица стилей
+│   │   ├── js/
+│   │   │   └── script.js               # Файл JavaScript для клиентов
+│   │   └── images/
+│   │       └── logo.png                # Лого приложения
+│   ├── templates/                      # HTML-шаблоны
+│   │   ├── base.html                   # Базовый шаблон для всех страниц
+│   │   ├── login.html                  # Форма входа
+│   │   ├── register.html               # Форма регистрации
+│   │   ├── dashboard.html              # Панель пользователя
+│   │   ├── create_trip.html            # Форма создания поездки
+│   │   ├── view_trips.html             # Просмотр списка поездок
+│   │   ├── edit_profile.html           # Редактирование профиля
+│   │   └── about.html                  # Информация о проекте
+│   └── favicon.ico                     # Изображение фавикона
+├── backend/                           # Backend-код
+│   ├── api.py                          # Основной файл API (точка входа)
+│   ├── auth.py                         # Авторизация и работа с токенами
+│   ├── config.py                       # Файл конфига
+│   ├── database.py                     # Управление базой данных
+│   ├── migrations.py                   # Миграционные скрипты (опционально)
+│   ├── models.py                       # ORM-модели
+│   ├── schemas.py                      # Pydantic-схемы
+│   ├── services.py                     # Бизнес-логика
+│   ├── utils.py                        # Вспомогательные функции
+│   └── tests/                          # Тесты (опционально)
+├── bot.py                              # Логика Telegram-бота
+├── db.py                               # Прямая работа с базой данных (опционально)
+├── .env                                # Переменнные окружения
+├── Dockerfile                          # Docker-конфигурация (опционально)
+├── docker-compose.yml                  # Docker-композиция (опционально)
+├── requirements.txt                    # Требования Python-пакетов
+└── README.md                           # Руководство по проекту
