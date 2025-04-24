@@ -3,26 +3,31 @@ from datetime import datetime
 
 class UserBase(BaseModel):
     username: str
-    full_name: str
+    email: EmailStr
 
 class UserCreate(UserBase):
     password: str
 
-class UserInDB(UserBase):
-    hashed_password: str
+class User(UserBase):
+    id: int
+    trips: list = []
+
+    class Config:
+        orm_mode = True
 
 class TripBase(BaseModel):
     departure_point: str
     arrival_point: str
     distance: float
-    price: float
+    cost: float
 
 class TripCreate(TripBase):
     pass
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+class Trip(TripBase):
+    id: int
+    timestamp: datetime
+    owner_id: int
 
-class TokenData(BaseModel):
-    username: str
+    class Config:
+        orm_mode = True
