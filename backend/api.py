@@ -1,4 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from pathlib import Path
 from sqlalchemy.orm import Session
 from .database import SessionLocal, engine
 from .models import User, Trip
@@ -9,6 +13,21 @@ from datetime import timedelta
 from passlib.context import CryptContext
 
 app = FastAPI()
+
+
+# Настройка поддержки статических ресурсов
+app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+
+# Рендеринг шаблонов
+templates = Jinja2Templates(directory="frontend/templates")
+
+@app.get("/", response_class=HTMLResponse)
+async def home_page(request: Request):
+    return templates.TemplateResponse("base.html", {"request": request})
+
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 # Подключение к базе данных
 def get_db():
